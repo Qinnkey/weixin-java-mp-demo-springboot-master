@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--<properties resource="application.properties"/>  -->
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.github.binarywang.demo.wechat.utils.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/wechat?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true"
+                        userId="root"
+                        password="123456"/>
+
+        <javaModelGenerator targetPackage="com.github.binarywang.demo.wechat.po" targetProject="src/main/java"/>
+
+		
+        <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources"/>
+
+
+        <javaClientGenerator targetPackage="com.github.binarywang.demo.wechat.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+
+
+        <table tableName="wc_user" domainObjectName="WeChatUserPo">
+            <!--这边默认的主键为自增的方式 所以在设计数据的时候要匹配-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
